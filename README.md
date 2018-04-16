@@ -1,4 +1,4 @@
-# Angular + RequireJS脚手架 V1.0
+# Angular + Webpack 脚手架 V1.0
 > 
 
 ***
@@ -8,12 +8,15 @@
 |---- README.md
 |---- package.json
 |---- node_modules
-|---- dev 开发目录
+|---- dev(webpack构建)
+|---- src 开发目录
 |   |---- images        图片
 |   |---- scripts       脚本库
 |   |---- skins         样式
 |   |---- templates     ng模板
 |   |---- views         页面
+|---- webpack
+|---- webpack.config.js
 ```
 
 ***
