@@ -12,16 +12,26 @@
                 loader:'url-loader?limit=1024&name=/images/[name]-[hash:8].[ext]'
             },
             {
+                test: /\.js$/,
+                loaders: ['es3ify-loader'],
+                //此规则不包括node_modules文件夹中的文件
+                exclude:/node_modules/
+            },
+            {
                 test:/(\.js)$/,
-                use:{
-                    loader:'babel-loader'
-                },
+                use:[
+                    {
+                        loader:'babel-loader'
+                    }
+                ],
+
                 //此规则不包括node_modules文件夹中的文件
                 exclude:/node_modules/
                 // query: {
                 //     presets: ['react', 'es2015']
                 // }
             },
+
             {
                 test:/\.css/,
                 use:extractTextPlugin.extract({

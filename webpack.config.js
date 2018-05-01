@@ -9,18 +9,24 @@
         plugins = require('./webpack/webpack.plugins'),
         rules = require('./webpack/webpack.rules'),
         hotServer = require('./webpack/webpack.hotserver'),
-        resolve = require('./webpack/webpack.resolve');
+        resolve = require('./webpack/webpack.resolve'),
+        path = require('path');
 
     const settings = {
         entry: webpackHelper.getEntrySetttings(),
         output: webpackHelper.getOutputSettings(),
-        devtool: webpackHelper.getDevToolType(),
         devServer: hotServer,
+        plugins:plugins,
         module: {
             rules: rules
-        },
-        plugins: plugins,
-        resolve: resolve
+        }
+        //devtool: webpackHelper.getDevToolType(),
+
+        // module: {
+        //     rules: rules
+        // },
+        //plugins: plugins,
+        //resolve: resolve
     }
 
     m.exports = settings;

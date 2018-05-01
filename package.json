@@ -9,18 +9,25 @@
     "hotdev": "npm run dev&&npm run hot"
   },
   "devDependencies": {
+    "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es3-member-expression-literals": "^6.22.0",
+    "babel-plugin-transform-es3-property-literals": "^6.22.0",
+    "babel-plugin-transform-es5-property-mutators": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.1",
+    "es3ify-loader": "^0.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "glob": "^7.1.2",
     "html-webpack-plugin": "^2.30.1",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
-    "webpack-cli": "^2.0.13",
-    "webpack-dev-server": "^2.9.7"
+    "webpack-cli": "^2.0.15",
+    "webpack-dev-server": "^2.11.2"
   }
 }

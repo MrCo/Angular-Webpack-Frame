@@ -8,6 +8,7 @@
    const fs = require('fs'),
        glob = require('glob'),
        path = require('path'),
+       node_modules = path.resolve(__dirname,'node_modules'),
        htmlWebpackPlugin = require('html-webpack-plugin');
 
     let Helper = {
@@ -20,9 +21,21 @@
              * */
             templateUrl: path.resolve('./src/templates/'),
             /**
+             * 页面路径
+             * */
+            viewUrl: path.resolve('./src/views/'),
+            /**
              * 组件路径
              * */
             componentUrl: path.resolve('./src/components/'),
+            /**
+             * 主引导路径
+             * */
+            bootstrapUrl: path.resolve('./src/bootstraps/'),
+            /**
+             * 控制器路径
+             * */
+            controllerUrl: path.resolve('./src/controllers'),
             /**
              * 脚本库路径
              * */
@@ -75,21 +88,17 @@
                 entry = {},
                 scriptFolderName = 'scripts';
 
-            //HTML模板+Component组件
-            glob.sync(`${_this.config.templateUrl}/*.html`).forEach(function (filePath) {
-                let _fileName = path.basename(filePath,'.html'),
-                    _groupFiles = [];
 
-                glob.sync(`${_this.config.componentUrl}/${_fileName}/*.js`).forEach(function (filePath) {
-                    _groupFiles.push(filePath);
-                });
+            //Html页面+Bootstrap引导
+            glob.sync(`${_this.config.viewUrl}/*.html`).forEach(function (filePath) {
+                let _fileName = path.basename(filePath,'.html');
 
-                entry[scriptFolderName + '/views/' + _fileName] = _groupFiles.length <= 1 ? _groupFiles.join('') : _groupFiles;
+                console.log(_fileName);
+                entry[`${scriptFolderName}/bootstrap/${_fileName}.main`] = `${_this.config.bootstrapUrl}/${_fileName}.main.js`;
             })
 
             //公共库
-            entry[scriptFolderName + '/libs/jquery'] = ['jquery'];
-            entry[scriptFolderName + '/libs/react'] = ['react','react-dom'];
+            entry[`${scriptFolderName}/libs/angular`] = ['./src/libs/angularjs/1.2.27/angular.js','./src/libs/angularjs/angular-ui-router.js'];
 
             return entry;
         },
@@ -114,19 +123,20 @@
                 plugins = [],
                 scriptFolderName = 'scripts';
 
-            glob.sync(`${_this.config.templateUrl}/*.html`).forEach(function (filePath) {
+            glob.sync(`${_this.config.viewUrl}/*.html`).forEach(function (filePath) {
                 let _fileName = path.basename(filePath),
                     _folderName = path.basename(filePath,'.html');
 
                 plugins.push(new htmlWebpackPlugin({
-                    filename:'views/' + _folderName + '/' + _fileName,
+                    filename:'views/' + _fileName,
                     template:path.resolve(filePath),
                     inject:'body',
                     hash:true,
                     chunks:[
-                        scriptFolderName + '/libs/jquery',
-                        scriptFolderName + '/libs/react',
-                        scriptFolderName + '/views/' + _folderName
+                        //CommonsChunkPlugin配置项中的name,需保持一致
+                        'scripts/common/vendor',
+                        `${scriptFolderName}/libs/angular`,
+                        `${scriptFolderName}/bootstrap/${_folderName}.main`
                     ],
                     //手动顺序
                     chunksSortMode:'manual'
