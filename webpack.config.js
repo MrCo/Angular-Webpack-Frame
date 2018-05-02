@@ -19,14 +19,9 @@
         plugins:plugins,
         module: {
             rules: rules
-        }
-        //devtool: webpackHelper.getDevToolType(),
-
-        // module: {
-        //     rules: rules
-        // },
-        //plugins: plugins,
-        //resolve: resolve
+        },
+        devtool: webpackHelper.getDevToolType(),
+        resolve: resolve
     }
 
     m.exports = settings;
