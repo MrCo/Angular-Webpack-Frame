@@ -8,13 +8,22 @@
 |---- README.md
 |---- package.json
 |---- node_modules
-|---- dev(webpack构建)
 |---- src 开发目录
-|   |---- images        图片
-|   |---- scripts       脚本库
-|   |---- skins         样式
-|   |---- templates     ng模板
-|   |---- views         页面
+|   |---- assets            资源文件
+|      |---- images         图片
+|   |---- bootstraps        ng启动脚本
+|   |---- commons           公共方法
+|   |---- components        ng组件
+|   |---- controllers       页面、组件控制器
+|   |---- routers           spa路由
+|   |---- configs           ng配置文件
+|   |---- templates         页面、组件模板
+|       |---- components    组件模板
+|       |---- modules       Page模块模板
+|   |---- libs              第三方库
+|   |---- widgets           第三方插件
+|   |---- views             静态页
+|   |---- skins             样式
 |---- webpack
 |---- webpack.config.js
 ```
@@ -27,7 +36,7 @@
 - "babel-preset-es2015": "^6.24.1",
 - "babel-preset-stage-0": "^6.24.1",
 - "clean-webpack-plugin": "^0.1.19",
-- "extract-text-webpack-plugin": "^3.0.2",
+- "extract-text-webpack-plugin": "^2.1.2",
 - "glob": "^7.1.2",
 - "html-webpack-plugin": "^2.30.1",
 - "less": "^3.0.1",
@@ -40,6 +49,7 @@
 
 * 开发环境 npm run dev
 * 代码发布 npm run build
+* 热更新开发环境 npm run hot
 
 ## 开发迭代记录
 > 2018.04.16    搭建
