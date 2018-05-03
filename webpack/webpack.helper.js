@@ -93,7 +93,6 @@
             glob.sync(`${_this.config.viewUrl}/*.html`).forEach(function (filePath) {
                 let _fileName = path.basename(filePath,'.html');
 
-                console.log(_fileName);
                 entry[`${scriptFolderName}/bootstrap/${_fileName}.main`] = `${_this.config.bootstrapUrl}/${_fileName}.main.js`;
             })
 
@@ -129,7 +128,7 @@
 
                 plugins.push(new htmlWebpackPlugin({
                     filename:'views/' + _fileName,
-                    template:path.resolve(filePath),
+                    template:'html-withimg-loader!' + path.resolve(filePath),
                     inject:'body',
                     hash:true,
                     chunks:[

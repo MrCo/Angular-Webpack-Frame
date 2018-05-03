@@ -4,19 +4,21 @@
  * Date:2018/4/15.
  */
 import NgRouter from './router.conf';
-import GridView from '../components/gridview.component';
+import GridViewComponent from '../components/gridview.component';
 export default class AppConf{
     app;
     constructor(){
         this.app = angular.module('defaultApp',['ui.router']);
 
-        this.app.config(($controllerProvider,$compileProvider,$filterProvider,$provide) => {
+        this.app.config(($controllerProvider,$compileProvider,$filterProvider,$provide,$stateProvider,$urlRouterProvider) => {
             this.app.register = {
                 controller:$controllerProvider.register,
                 directive:$compileProvider.register,
                 filter:$filterProvider.register,
                 service:$provide.service
             }
+
+            new NgRouter(this.app).initRouterConfig($stateProvider,$urlRouterProvider,$controllerProvider);
         });
 
         /*this.app.config(function ($httpProvider) {
@@ -35,10 +37,17 @@ export default class AppConf{
             }
         });*/
 
-        new GridView(this.app);
+        this.app.run(()=>{
 
-        this.app.config(($stateProvider,$urlRouterProvider,$controllerProvider) => {
-            new NgRouter(this.app).getRouterConfig($stateProvider,$urlRouterProvider,$controllerProvider);
         });
+
+        this.initComponent();
+    }
+
+    /**
+     * 组件初始化
+     * */
+    initComponent(){
+        new GridViewComponent(this.app);
     }
 }

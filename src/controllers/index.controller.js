@@ -6,6 +6,8 @@
 let $ = require('../libs/jquery/jquery-1.11.3.min');
 let eChart = require('../../node_modules/echarts/echarts.all');
 
+import hzwImg from '../assets/images/hzw.jpg';
+
 export default class Index{
     constructor(){
 

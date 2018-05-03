@@ -8,13 +8,8 @@ import indexStyle from '../skins/less/default/index.less';
 
 import AppConf from '../configs/app.conf';
 
-
 let indexMain = new class{
     constructor(){}
-
-    printMsg(){
-        console.log('hello cmd angular2222..');
-    }
 
     init(){
         let appConf = new AppConf();
@@ -25,4 +20,3 @@ let indexMain = new class{
 }();
 
 indexMain.init();
-indexMain.printMsg();
